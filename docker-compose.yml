@@ -1,7 +1,7 @@
 services: 
   db:
     image: postgres:15
-    container_name: db-workflows-ia
+    container_name: medi-system-db
     restart: always
     env_file:
       - .env
@@ -12,13 +12,13 @@ services:
     ports:
       - "${DB_PORT}:5432"
     volumes:
-      - db-workflows-ia:/var/lib/postgresql/data
+      - medi-system-db:/var/lib/postgresql/data
     networks:
-      - workflows-ia-network
+      - medi-system-network
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin-workflows
+    container_name: medi-system-pgadmin
     restart: always
     ports:
       - "5050:80" 
@@ -28,12 +28,12 @@ services:
     depends_on:
       - db
     networks:
-      - workflows-ia-network
+      - medi-system-network
 
 volumes:
-  db-workflows-ia:
+  medi-system-db:
 
 networks:
-  workflows-ia-network:
+  medi-system-network:
     driver: bridge
 
