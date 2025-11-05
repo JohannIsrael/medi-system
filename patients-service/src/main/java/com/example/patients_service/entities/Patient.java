@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "pacientes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,21 +19,21 @@ public class Patient {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String nombre;
 
-    @Column(name = "birth_date", nullable = false)
-    private LocalDate birthDate;
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private LocalDate fecha_nacimiento;
 
-    @Column(name = "nss", unique = true, nullable = false)
+    @Column(name = "nss", nullable = false)
     private String nss;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_doctor", nullable = false)
-    private Boolean isDoctor = false;
+    @Column(name = "es_doctor", nullable = false)
+    private Boolean es_doctor = false;
 }
 
