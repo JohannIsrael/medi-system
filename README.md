@@ -48,14 +48,48 @@ DB_PASSWORD=pg314
 DB_PORT=5432
 DB_NAME=postgres
 ```
+---
+
+## 🐳 Configuración con Docker Compose
+El proyecto incluye un archivo docker-compose.yml que levanta un contenedor de PostgreSQL con las variables del .env.
+
+Con Docker Desktop corriendo, abre una terminal en la raíz del proyecto y ejecuta:
+
+```
+docker-compose up -d
+```
+
+Deberías ver algo como:
+
+```
+CONTAINER ID   IMAGE         STATUS         PORTS
+a1b2c3d4e5f6   postgres:14   Up 2 minutes   0.0.0.0:5432->5432/tcp
+```
+
+---
+## 🧰 Acceso a PostgreSQL con pgAdmin (GUI)
+
+Con esta configuración, el usuario podrá entrar a pgAdmin desde el navegador, conectarse al servidor PostgreSQL del compose y crear las bases de datos `patients_db` y `files_db` sin usar consola.
+
+Debe acceder a http://localhost:5050/ con las siguientes credenciales (indicadas en el `docker-compose.yml`):
+
+```
+PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+PGADMIN_DEFAULT_PASSWORD: admin
+```
 
 ---
 
 
 ## 🗄️ Configuración de PostgreSQL
 
-- Inicia Docker Desktop o utiliza una instalación local de PostgreSQL.
+- Con Docker Desktop inciado o utilizando una instalación local de PostgreSQL.
 - Crea un servidor con las credenciales indicadas en el .env.
+
+```
+DB_USERNAME=postgres
+DB_PASSWORD=pg314
+```
 - Dentro del servidor, crea las siguientes bases de datos:
 
 ```
@@ -78,7 +112,7 @@ CREATE DATABASE files_db;
 - gateway-service (no aplica por el momento)
 
 
-⚠️ Si un servicio no inicia, revisa que las variables del .env coincidan con tu configuración local y que la base de datos esté corriendo.
+⚠️ Si un servicio no inicia, revisa que las variables del .env coincidan con tu configuración local y que la base de datos esté corriendo. Cada servicio crea sus tablas de forma autonoma, pero para esto debemos haber creado la base de datos manualmente.
 
 ---
 ## ✅ Verificación
